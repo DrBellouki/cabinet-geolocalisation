@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cabinet d'Urologie - Dr Omar BELLOUKI</title>
+    <script>
+        function redirectToNavigationApp() {
+            const latitude = "35.775494"; // Latitude de votre cabinet
+            const longitude = "-5.813396"; // Longitude de votre cabinet
+
+            // Liens pour chaque application
+            const wazeUrl = `https://www.waze.com/ul?ll=${latitude},${longitude}&navigate=yes`;
+            const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${latitude},${longitude}`;
+            const appleMapsUrl = `https://maps.apple.com/?daddr=${latitude},${longitude}`;
+
+            // Détection de l'appareil et redirection
+            if (navigator.userAgent.match(/iPhone|iPad|iPod/i)) {
+                // Si l'utilisateur est sur iOS, rediriger vers Apple Maps
+                window.location.href = appleMapsUrl;
+            } else if (navigator.userAgent.match(/Android/i)) {
+                // Si l'utilisateur est sur Android, rediriger vers Google Maps
+                window.location.href = googleMapsUrl;
+            } else {
+                // Par défaut, rediriger vers Waze
+                window.location.href = wazeUrl;
+            }
+        }
+    </script>
+</head>
+<body onload="redirectToNavigationApp()">
+    <h1>Cabinet d'Urologie - Dr Omar BELLOUKI</h1>
+    <p>Redirection en cours vers la localisation du cabinet...</p>
+</body>
+</html>
