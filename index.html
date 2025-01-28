@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Localisation - Cabinet d'Urologie Dr Omar BELLOUKI</title>
+    <script>
+        function redirectUser() {
+            const lat = 35.775494;
+            const lng = -5.813396;
+
+            // Détection du système (iPhone / Android)
+            const userAgent = navigator.userAgent || navigator.vendor;
+
+            if (/iPhone|iPad|iPod/i.test(userAgent)) {
+                // iPhone → Apple Maps (prioritaire)
+                window.location.href = `maps://?q=${lat},${lng}`;
+            } else if (/Android/i.test(userAgent)) {
+                // Android → Waze si installé, sinon Google Maps
+                window.location.href = `https://waze.com/ul?ll=${lat},${lng}&navigate=yes`;
+                setTimeout(() => {
+                    window.location.href = `https://www.google.com/maps?q=${lat},${lng}`;
+                }, 2000); // Si Waze n'est pas installé, après 2 secondes on ouvre Google Maps
+            } else {
+                // PC → Google Maps
+                window.location.href = `https://www.google.com/maps?q=${lat},${lng}`;
+            }
+        }
+    </script>
+</head>
+<body onload="redirectUser()">
+    <h1>Redirection en cours...</h1>
+    <p>Si la redirection ne fonctionne pas, <a id="manualLink" href="#">cliquez ici</a>.</p>
+    <script>
+        document.getElementById("manualLink").href = `https://www.google.com/maps?q=${lat},${lng}`;
+    </script>
+</body>
+</html>
